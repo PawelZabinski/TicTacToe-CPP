@@ -156,6 +156,18 @@ auto TicTacToe::checkGameStatus() -> void
 
   else if(m_Board[2][0] == 'O' && m_Board[1][1] == 'O' && m_Board[0][2] == 'O')
     playerWon(PlayerRotation::O);
+
+  // Check If Draw //
+  for (size_t x {0}; x < 3; x++)
+  {
+    for (size_t y {0}; y < 3; y++)
+    {
+      if (m_Board[x][y] == ' ')
+        return;
+    }
+  }
+
+  tie();
 }
 
 auto TicTacToe::playerWon(PlayerRotation player) -> void
@@ -164,5 +176,14 @@ auto TicTacToe::playerWon(PlayerRotation player) -> void
   displayBoard();
 
   std::cout << CYAN << "\nPlayer [" << (char)(player) << "] Has Won The Game..." << CLEAR << std::endl;
+  exit(0);
+}
+
+auto TicTacToe::tie() -> void
+{
+  std::cout << "\033c";
+  displayBoard();
+
+  std::cout << CYAN << "\nGame Concluded in a Tie..." << CLEAR << std::endl;
   exit(0);
 }
