@@ -31,4 +31,5 @@ public:
 
   void checkGameStatus();
   void playerWon(PlayerRotation player);
+  void tie();
 };
